@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta Virtual - 21 de Septiembre</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Capa de fondo difuso para los laterales por imagen */
+        .bg-blur-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(15px) brightness(0.6);
+            transform: scale(1.1);
+            z-index: 1;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        body.bg-page-1 .bg-blur-layer { background-image: url('bg1.png'); }
+        body.bg-page-2 .bg-blur-layer { background-image: url('bg2.png'); }
+        body.bg-page-3 .bg-blur-layer { background-image: url('bg3.png'); }
+
+        /* Imagen central completa en "contain" */
+        .bg-main-image {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 2;
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        body.bg-page-1 .bg-main-image { background-image: url('bg1.png'); }
+        body.bg-page-2 .bg-main-image { background-image: url('bg2.png'); }
+        body.bg-page-3 .bg-main-image { background-image: url('bg3.png'); }
+
+        /* Tarjeta altamente transparente para ver perfectamente las imágenes de atrás */
+        .card {
+            position: relative;
+            z-index: 10;
+            background: rgba(15, 15, 15, 0.45); /* Fondo oscuro muy transparente */
+            backdrop-filter: blur(6px); /* Efecto difuminado elegante */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        h1 { color: #81c784; margin-bottom: 15px; font-size: 1.8rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        p { color: #f0f0f0; line-height: 1.6; margin-bottom: 28px; text-align: justify; font-weight: 400; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+        
+        .btn {
+            background: #1b365d; color: white; border: none;
+            padding: 12px 24px; border-radius: 25px; font-size: 1rem;
+            cursor: pointer; transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .btn:hover { background: #2e7d32; transform: scale(1.05); }
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body id="body-container" class="bg-page-1">
+
+    <!-- Capas de fondo -->
+    <div class="bg-blur-layer"></div>
+    <div class="bg-main-image"></div>
+
+    <div class="card">
+        <!-- PORTADA 1 -->
+        <div id="page1" class="page active">
+            <h1>¡Feliz 21 de Septiembre! 🌸</h1>
+            <p style="text-align: center;">Día del Estudiante y de la Primavera. ¡Celebramos el esfuerzo, el entusiasmo y el futuro de nuestra juventud!</p>
+            <button class="btn" onclick="showPage(2)">Ver Mi Testimonio</button>
+        </div>
+
+        <!-- PORTADA 2 -->
+        <div id="page2" class="page">
+            <h1>Mi Testimonio como Estudiante</h1>
+            <p>Han sido mas de 10 años que estuve estudiando como estudiante, pero mas que eso, vivi mas de una decada de experiencias con varias personas, sin embargo, me siento incompleto, siento que pude haber logrado ams, que pude haber hecho mas felices a otras personas me es inevitable no poder sentir culpable y arrepentido de muchas cosas, quisiera tener el valor de seguir, y es lo que tendre, extraño aquelals tardes solitarias, pero tambien anhelo dias acompañados, la verguenza y el miedo me impidieron avanzar bastante en este colegio y en mi vida en general, sere una gran persona en los proximos 17 años, y la proxima vez que vea mi pasado sera con orgullo y nostalgia alegre. Tengo sueños que me motivan a superarme, como continuar mis estudios, formarme profesionalmente y construir un futuro del que pueda sentirme orgulloso. Sé que todavía tengo mucho que aprender y que no siempre seré constante, pero también entiendo que cada dificultad puede convertirse en una oportunidad para mejorar.<br><br>Si algo define mi experiencia, es mi deseo de convertirme en una mejor versión de mí mismo. No soy una persona perfecta ni tengo todas las respuestas, pero quiero avanzar con determinación, humildad y propósito. Mi mayor aprendizaje ha sido comprender que el éxito verdadero no solo está en lo que consigo, sino también en la persona en la que me convierto durante el camino.</p>
+            <button class="btn" onclick="showPage(3)">Ver Mi Propósito a Futuro</button>
+        </div>
+
+        <!-- PORTADA 3 -->
+        <div id="page3" class="page">
+            <h1>Mi Propósito a Futuro</h1>
+            <p>Tras tantos años aqui, debo "proyectarme", por lo que me gustaria ser una persona capaz de alcanzar sus metas sin dejar de vista sus valores, Poder convertir cada obstaculo en una oportuunidad y tener el don de la voluntad. Aunque me cueste seguir adelante con algo, debo aprender a hacerlo y por supuesto que quiero. En lo aademico, tal cual una fantasia, ansio ser profesional en el area de medicina como medico, y tras la graduacion ir al extranjero a estudiar para mejorar mis conocimientos, pues quiero ahcer cirugias, lo cual me parece lo mas hermoso de la carrera. Comprendo que el futuro no se construye de un día para otro y que probablemente encontraré obstáculos y momentos de incertidumbre. Por eso, quiero aprender a afrontar las dificultades con madurez, mantenerme firme ante mis objetivos y reconocer mis errores como oportunidades de crecimiento. Y si Dios no me dio el don de ser amado, que su voluntad se cumpla pero arrenque de mi pecho esta necesidad de querer ser amado para poder emprender mi propio camino en viajes por el mundo</p>
+            <button class="btn" onclick="showPage(1)">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+            document.getElementById('body-container').className = "bg-page-" + pageNumber;
+        }
+    </script>
+</body>
+</html>
